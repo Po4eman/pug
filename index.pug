@@ -1,0 +1,38 @@
+//https://www.browserling.com/tools/jade-to-html
+
+//title
+- var title = "Проверка"
+//style path
+- var styleURL = "style.css"
+//meta
+
+//navbar
+- var logo = "<h1>LOGO</h1>"
+- var navData = {"Главная":"/","О нас":"/about","Без ссылки":""}
+
+//banner
+- var banner = [["href","src","alt"],["src","alt","href"]];
+
+
+mixin nav(data,logo)
+ ul.nav
+  if logo
+   li.logo !{logo}
+  each i, n in data
+   li.item
+    if i
+     a(href= i)= n
+    else
+     span= n
+doctype html
+head
+ title= title
+ meta(name="viewport" content="width=device-width, initial-scale=1")
+ link(rel="stylesheet" href=styleURL)
+body
+ +nav(navData,logo)
+ .banner
+  each i in banner
+   if #{i[0]}
+    a(href=#{i[0]})
+     img(src=#{i[1]} alt=#{i[3]})
